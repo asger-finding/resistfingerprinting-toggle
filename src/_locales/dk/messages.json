@@ -1,10 +1,10 @@
 {
 	"extension_name": {
-		"message": "Resist Fingerprinting",
+		"message": "Resist Fingerprinting Toggle",
 		"description": "Name of the add-on."
 	},
 	"extension_description": {
-		"message": "Aktiverer indstillingen Resist Fingerprinting",
+		"message": "Skift mellem indstillingen Resist Fingerprinting hjemmeside-for-hjemmeside",
 		"description": "Description of the add-on."
 	},
 	"tooltip_enable_rfp": {

@@ -1,6 +1,6 @@
 {
 	"extension_name": {
-		"message": "Resist Fingerprinting",
+		"message": "Resist Fingerprinting Toggle",
 		"description": "Name of the add-on."
 	},
 	"extension_description": {
