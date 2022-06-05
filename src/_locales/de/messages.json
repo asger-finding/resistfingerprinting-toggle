@@ -7,13 +7,29 @@
 		"message": "Aktiviert Resist Fingerprinting",
 		"description": "Description of the add-on."
 	},
-	"tooltip_disable_rfp": {
-		"message": "Klicke um Resist Fingerprinting zu deaktivieren",
-		"description": "Tooltip for BrowserAction. (click to disable)"
-	},
 	"tooltip_enable_rfp": {
-		"message": "Klicke um Resist Fingerprinting wieder zu aktivieren",
-		"description": "Tooltip for BrowserAction. (click to enable)"
+		"message": "Klicke um Resist Fingerprinting wieder zu aktivieren$host$",
+		"description": "Tooltip for BrowserAction. (click to enable)",
+		"placeholders": {
+			"host": {
+				"content": " — $1",
+				"example": "developer.mozilla.org"
+			}
+		}
+	},
+	"tooltip_disable_rfp": {
+		"message": "Klicke um Resist Fingerprinting zu deaktivieren$host$",
+		"description": "Tooltip for BrowserAction. (click to disable)",
+		"placeholders": {
+			"host": {
+				"content": " — $1",
+				"example": "developer.mozilla.org"
+			}
+		}
+	},
+	"tooltip_rfp_unavailable": {
+		"message": "Resist Fingerprinting ist auf der fokussierten Registerkarte nicht verfügbar",
+		"description": "Tooltip for BrowserAction (unavailable on focused tab)"
 	},
 	"error_invalid_url": {
 		"message": "Add-on funktioniert nur auf einer Registerkarte mit einer gültigen URL",

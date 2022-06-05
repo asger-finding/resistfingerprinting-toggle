@@ -1,11 +1,9 @@
-import { DISABLED_HOSTS, ICONS, RFP_DEFAULT_STATE, TRANSLATIONS } from './constants.js';
+import { DISABLED_HOSTS, ICONS, RFP_DEFAULT_STATE, TRANSLATIONS, VALID_PROTOCOLS } from './constants.js';
 
 // We use a cache to avoid querying the storage every time we need to check if a host is disabled
 let disabledHostsCache: string[] = [];
 
-/**
- * Ensure that disabled hosts is an array in local extension storage
- */
+/** Ensure that disabled hosts is an array in local extension storage */
 async function ensureDisabledHosts() {
 	const disabledHosts: string[] = (await browser.storage.local.get([DISABLED_HOSTS]))[DISABLED_HOSTS];
 
@@ -28,20 +26,22 @@ async function getCurrentTabURL(): Promise<string | undefined> {
  * Set privacy.resistFingerprinting accordingly.
  * @param isRFPEnabled - Whether resist fingerprinting should be enabled or not.
  */
-function updateRFP(isRFPEnabled: boolean) {
-	browser.browserAction.setIcon({
-		path: isRFPEnabled
-			? ICONS.RFP_ENABLED
-			: ICONS.RFP_DISABLED
-	});
-	browser.browserAction.setTitle({
-		// Screen readers can see the title
-		title: isRFPEnabled
-			? browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_DISABLE_RFP)
-			: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_ENABLE_RFP)
-	});
+function updateRFP(isRFPEnabled: boolean, host?: string) {
 	browser.privacy.websites.resistFingerprinting.get({}).then(({ value }) => {
-		if (value !== isRFPEnabled) browser.privacy.websites.resistFingerprinting.set({ value: isRFPEnabled });
+		if (value !== isRFPEnabled) {
+			browser.browserAction.setIcon({
+				path: isRFPEnabled
+					? ICONS.RFP_ENABLED
+					: ICONS.RFP_DISABLED
+			});
+			browser.browserAction.setTitle({
+				// Screen readers can see the title
+				title: isRFPEnabled
+					? browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_DISABLE_RFP, host)
+					: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_ENABLE_RFP, host)
+			});
+			browser.privacy.websites.resistFingerprinting.set({ value: isRFPEnabled });
+		}
 	});
 }
 
@@ -52,11 +52,12 @@ function updateRFP(isRFPEnabled: boolean) {
  * @param url - The URL string to check.
  * @returns URL host
  */
-function handleURL(url: string): string {
+function handleURL(url: string): URL {
 	try {
-		return new URL(url).host;
+		return new URL(url);
 	} catch (err) {
 		// Realistically, this should never happen
+		browser.browserAction.setIcon({ path: ICONS.RFP_DEFAULT });
 		browser.browserAction.setTitle({ title: browser.i18n.getMessage(TRANSLATIONS.ERROR_INVALID_URL) });
 		throw err;
 	}
@@ -86,7 +87,10 @@ browser.browserAction.onClicked.addListener(async() => {
 	const url = await getCurrentTabURL();
 
 	if (typeof url === 'string') {
-		const { host } = new URL(url);
+		const urlObject = new URL(url);
+		if (!VALID_PROTOCOLS.includes(urlObject.protocol)) return;
+
+		const { host } = urlObject;
 		const isHostRFPEnabled = await isRFPEnabledForHost(host);
 
 		// We should not rely on the cache here as we will invalidate it either way.
@@ -101,23 +105,30 @@ browser.browserAction.onClicked.addListener(async() => {
 		disabledHostsCache = disabledHosts;
 
 		// Update resist fingerprinting for the focused tab
-		updateRFP(!isHostRFPEnabled);
+		updateRFP(!isHostRFPEnabled, host);
 	}
 });
 
-/**
- * Event handler for tab updates that can be adapted to multiple listeners.
- */
+/** Event handler for tab updates that can be adapted to multiple listeners. */
 async function handleTabChange() {
 	const url = await getCurrentTabURL();
 
 	if (typeof url === 'string') {
-		const host = handleURL(url);
+		const urlObject = handleURL(url);
+		if (!VALID_PROTOCOLS.includes(urlObject.protocol)) {
+			// Grey out the extension icon if the current tab is not a valid protocol
+			browser.browserAction.setIcon({ path: ICONS.RFP_DEFAULT });
+			browser.browserAction.setTitle({ title: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_RFP_UNAVAILABLE) });
+			return;
+		}
+
+		const { host } = urlObject;
 		const isHostRFPEnabled = await isRFPEnabledForHost(host);
 
-		updateRFP(isHostRFPEnabled);
+		updateRFP(isHostRFPEnabled, host);
 	}
 }
 
 // Listen to tab updates
 browser.tabs.onUpdated.addListener(handleTabChange);
+browser.tabs.onActivated.addListener(handleTabChange);

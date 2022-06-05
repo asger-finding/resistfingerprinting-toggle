@@ -1,19 +1,35 @@
 {
 	"extension_name": {
 		"message": "Resist Fingerprinting",
-		"description": "Name of the extension."
+		"description": "Name of the add-on."
 	},
 	"extension_description": {
 		"message": "Aktiverer indstillingen Resist Fingerprinting",
 		"description": "Description of the add-on."
 	},
-	"tooltip_disable_rfp": {
-		"message": "Klik for at deaktivere Resist Fingerprinting",
-		"description": "Tooltip for BrowserAction"
-	},
 	"tooltip_enable_rfp": {
-		"message": "Klik for at aktivere Resist Fingerprinting",
-		"description": "Tooltip for BrowserAction"
+		"message": "Klik for at aktivere Resist Fingerprinting$host$",
+		"description": "Tooltip for BrowserAction. (click to enable)",
+		"placeholders": {
+			"host": {
+				"content": " — $1",
+				"example": "developer.mozilla.org"
+			}
+		}
+	},
+	"tooltip_disable_rfp": {
+		"message": "Klik for at deaktivere Resist Fingerprinting$host$",
+		"description": "Tooltip for BrowserAction. (click to disable)",
+		"placeholders": {
+			"host": {
+				"content": " — $1",
+				"example": "developer.mozilla.org"
+			}
+		}
+	},
+	"tooltip_rfp_unavailable": {
+		"message": "Resist Fingerprinting er ikke tilgængelig på den nuværende fane",
+		"description": "Tooltip for BrowserAction (unavailable on focused tab)"
 	},
 	"error_invalid_url": {
 		"message": "Tilføjelsen fungerer kun på en fane med en gyldig URL",
