@@ -1,4 +1,10 @@
-import { DISABLED_HOSTS, ICONS, RFP_DEFAULT_STATE, TRANSLATIONS, VALID_PROTOCOLS } from './constants.js';
+import {
+	DISABLED_HOSTS,
+	ICONS,
+	RFP_DEFAULT_STATE,
+	TRANSLATIONS,
+	VALID_PROTOCOLS
+} from './constants.js';
 
 // We use a cache to avoid querying the storage every time we need to check if a host is disabled
 let disabledHostsCache: string[] = [];
@@ -27,21 +33,19 @@ async function getCurrentTabURL(): Promise<string | undefined> {
  * @param isRFPEnabled - Whether resist fingerprinting should be enabled or not.
  */
 function updateRFP(isRFPEnabled: boolean, host?: string) {
+	browser.browserAction.setIcon({
+		path: isRFPEnabled
+			? ICONS.RFP_ENABLED
+			: ICONS.RFP_DISABLED
+	});
+	browser.browserAction.setTitle({
+		// Screen readers can see the title
+		title: isRFPEnabled
+			? browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_DISABLE_RFP, host)
+			: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_ENABLE_RFP, host)
+	});
 	browser.privacy.websites.resistFingerprinting.get({}).then(({ value }) => {
-		if (value !== isRFPEnabled) {
-			browser.browserAction.setIcon({
-				path: isRFPEnabled
-					? ICONS.RFP_ENABLED
-					: ICONS.RFP_DISABLED
-			});
-			browser.browserAction.setTitle({
-				// Screen readers can see the title
-				title: isRFPEnabled
-					? browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_DISABLE_RFP, host)
-					: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_ENABLE_RFP, host)
-			});
-			browser.privacy.websites.resistFingerprinting.set({ value: isRFPEnabled });
-		}
+		if (value !== isRFPEnabled) browser.privacy.websites.resistFingerprinting.set({ value: isRFPEnabled });
 	});
 }
 
@@ -115,8 +119,9 @@ async function handleTabChange() {
 
 	if (typeof url === 'string') {
 		const urlObject = handleURL(url);
+
+		// Grey out the extension icon and set the title to unavailable, if the current tab is not a valid protocol
 		if (!VALID_PROTOCOLS.includes(urlObject.protocol)) {
-			// Grey out the extension icon if the current tab is not a valid protocol
 			browser.browserAction.setIcon({ path: ICONS.RFP_DEFAULT });
 			browser.browserAction.setTitle({ title: browser.i18n.getMessage(TRANSLATIONS.TOOLTIP_RFP_UNAVAILABLE) });
 			return;

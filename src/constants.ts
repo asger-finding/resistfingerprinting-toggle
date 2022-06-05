@@ -10,5 +10,5 @@ export const ICONS = {
 	RFP_DISABLED: 'icons/rfp-disabled.svg'
 };
 export const DISABLED_HOSTS = 'disabledHosts';
-export const RFP_DEFAULT_STATE = true;
 export const VALID_PROTOCOLS = ['http:', 'https:'];
+export const RFP_DEFAULT_STATE = true;
