@@ -23,7 +23,9 @@ async function getCurrentTabURL(): Promise<string | undefined> {
 }
 
 /**
+ * Update the extension icon and title to reflect the current RFP state.
  * 
+ * Set privacy.resistFingerprinting accordingly.
  * @param isRFPEnabled - Whether resist fingerprinting should be enabled or not.
  */
 function updateRFP(isRFPEnabled: boolean) {
@@ -103,6 +105,9 @@ browser.browserAction.onClicked.addListener(async() => {
 	}
 });
 
+/**
+ * Event handler for tab updates that can be adapted to multiple listeners.
+ */
 async function handleTabChange() {
 	const url = await getCurrentTabURL();
 
