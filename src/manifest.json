@@ -1,0 +1,27 @@
+{
+	"description": "__MSG_extension_description__",
+	"manifest_version": 2,
+	"name": "__MSG_extension_name__",
+	"version": "0.1.0",
+	"homepage_url": "https://github.com/asger-finding/resistfingerprinting-toggle",
+	"default_locale": "en",
+	"icons": {
+		"48": "icons/rfp-default.svg",
+		"96": "icons/rfp-default.svg"
+	},
+	"permissions": [
+		"privacy",
+		"tabs",
+		"storage"
+	],
+	"background": {
+		"page": "background.html"
+	},
+	"browser_action": {
+		"default_icon": {
+			"16": "icons/rfp-default.svg",
+			"32": "icons/rfp-default.svg"
+		},
+		"default_title": "__MSG_tooltip_disable_rfp__"
+	}
+}

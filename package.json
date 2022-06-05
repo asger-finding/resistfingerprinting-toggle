@@ -1,0 +1,39 @@
+{
+  "name": "resistfingerprinting-toggle",
+  "version": "0.1.0",
+  "description": "Firefox Extension: Toggle the resist fingerprinting feature per-tab",
+  "author": "Asger Finding",
+  "license": "GPL-2.0",
+  "scripts": {
+    "watch": "gulp watch --state=development",
+    "dev": "gulp --state=development",
+    "prod": "gulp --state=production",
+    "lint": "yarn eslint . --ext .ts,.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@swc/core": "^1.2.196",
+    "@types/firefox-webext-browser": "^94.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "del": "^6.1.1",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-raven": "^1.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "gulp": "^4.0.2",
+    "gulp-if": "^3.0.0",
+    "gulp-ignore": "^3.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-jsonminify": "^1.1.0",
+    "gulp-swc": "^1.2.3",
+    "typescript": "^4.7.3",
+    "yargs": "^17.5.1"
+  },
+  "keywords": [
+    "web-extension",
+    "privacy",
+    "resist fingerprinting",
+    "fingerprinting"
+  ]
+}

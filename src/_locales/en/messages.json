@@ -1,0 +1,22 @@
+{
+	"extension_name": {
+		"message": "Resist Fingerprinting",
+		"description": "Name of the extension."
+	},
+	"extension_description": {
+		"message": "Enables the Resist Fingerprinting preference",
+		"description": "Description of the add-on."
+	},
+	"tooltip_disable_rfp": {
+		"message": "Click to disable Resist Fingerprinting",
+		"description": "Tooltip for BrowserAction"
+	},
+	"tooltip_enable_rfp": {
+		"message": "Click to enable Resist Fingerprinting",
+		"description": "Tooltip for BrowserAction"
+	},
+	"error_invalid_url": {
+		"message": "Add-on works only on a tab with a valid URL",
+		"description": "Error message when the URL is invalid."
+	}
+}

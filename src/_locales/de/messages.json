@@ -1,0 +1,22 @@
+{
+	"extension_name": {
+		"message": "Resist Fingerprinting",
+		"description": "Name of the add-on."
+	},
+	"extension_description": {
+		"message": "Aktiviert Resist Fingerprinting",
+		"description": "Description of the add-on."
+	},
+	"tooltip_disable_rfp": {
+		"message": "Klicke um Resist Fingerprinting zu deaktivieren",
+		"description": "Tooltip for BrowserAction. (click to disable)"
+	},
+	"tooltip_enable_rfp": {
+		"message": "Klicke um Resist Fingerprinting wieder zu aktivieren",
+		"description": "Tooltip for BrowserAction. (click to enable)"
+	},
+	"error_invalid_url": {
+		"message": "Add-on funktioniert nur auf einer Registerkarte mit einer gültigen URL",
+		"description": "Error message when the URL is invalid."
+	}
+}
