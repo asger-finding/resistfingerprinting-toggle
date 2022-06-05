@@ -4,7 +4,7 @@
 		"description": "Name of the add-on."
 	},
 	"extension_description": {
-		"message": "Aktiviert Resist Fingerprinting",
+		"message": "Umschalten der Resist Fingerprinting-Präferenz Website für Website",
 		"description": "Description of the add-on."
 	},
 	"tooltip_enable_rfp": {
