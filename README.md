@@ -8,11 +8,10 @@ See [Mozilla's corresponding support article](https://support.mozilla.org/kb/fir
 
 By pressing the add-on icon you can toggle a tab host (eg., [developer.mozilla.org](https://developer.mozilla.org)) between having privacy.resistFingerprinting enabled or not.  
 Resist Fingerprinting only works globally, so this add-on just switches the state when you focus a new tab or navigate to a different URL. This is not a perfect privacy solution so please use [CanvasBlocker](https://github.com/kkapsner/CanvasBlocker) too!
-<!--
+
 ## Installation
 
-[Install from addons.mozilla.org](https://addons.mozilla.org/firefox/addon/resist-fingerprinting/)
--->
+[Install from addons.mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/rfp-toggle/) or by going to [about:debugging/This Firefox](about:debugging#/runtime/this-firefox) and pressing `Load Temporary Add-on...`
 
 ## License
 
