@@ -14,7 +14,7 @@
   "devDependencies": {
     "@swc/core": "^1.2.212",
     "@types/firefox-webext-browser": "^94.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "del": "^6.1.1",
     "eslint": "^8.18.0",
