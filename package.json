@@ -16,7 +16,7 @@
     "@types/firefox-webext-browser": "^94.0.1",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.31.0",
-    "del": "^6.1.1",
+    "del": "^7.0.0",
     "eslint": "^8.20.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-raven": "^1.0.3",
