@@ -12,7 +12,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@swc/core": "^1.2.241",
+    "@swc/core": "^1.2.247",
     "@types/firefox-webext-browser": "^94.0.1",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.33.1",
