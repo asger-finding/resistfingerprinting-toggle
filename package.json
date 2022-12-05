@@ -17,7 +17,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "del": "^6.1.1",
-    "eslint": "^8.24.0",
+    "eslint": "^8.29.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-raven": "^1.0.3",
     "eslint-plugin-import": "^2.26.0",
